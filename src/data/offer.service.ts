@@ -6,7 +6,7 @@ class OfferService {
   baseUrl = '/offers';
 
   async getOffers(params: OfferListSearchParams): Promise<Offer[]> {
-    const res = await http.get<Offer[]>(this.baseUrl);
+    const res = await http.get<Offer[]>(this.baseUrl, { params });
 
     const offers = res.data;
 

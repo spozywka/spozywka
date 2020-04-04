@@ -2,6 +2,7 @@ import { parse } from 'qs';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { LoadWrapper } from '../../components/LoadWrapper';
 import { Navbar } from '../../components/Navbar';
 import { offerService } from '../../data/offer.service';
 import { useRequest } from '../../hooks/useRequest';
@@ -32,14 +33,16 @@ const Map = styled.div`
 export function OfferList() {
   const location = useLocation();
   const params = parse(location.search, { ignoreQueryPrefix: true }) as OfferListSearchParams;
-  const { data: offers } = useRequest(() => offerService.getOffers(params), []);
+  const { data: offers, pending, failure } = useRequest(() => offerService.getOffers(params), []);
 
   return (
     <Wrapper>
       <ListWrapper>
         <Navbar />
 
-        <List offers={offers} />
+        <LoadWrapper pending={pending} failure={failure}>
+          <List offers={offers} />
+        </LoadWrapper>
       </ListWrapper>
 
       <Map />

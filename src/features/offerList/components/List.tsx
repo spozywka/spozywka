@@ -24,6 +24,7 @@ export function List(props: Props) {
           date={offer.delivery_date}
           distance={offer.distance}
           title={offer.title}
+          photoUrl={offer.photo_url}
         />
       ))}
     </Wrapper>

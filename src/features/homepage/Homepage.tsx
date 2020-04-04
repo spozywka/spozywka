@@ -14,17 +14,21 @@ export function Homepage() {
   const [state, setState] = useState<OfferListSearchParams>(defaultOfferListParams);
 
   return (
-    <Section>
-      <Navbar />
+    <>
+      <Section>
+        <Navbar />
 
-      <Hero />
+        <Hero />
 
-      <SearchBox
-        params={state}
-        cities={CITITES}
-        categories={CATEGORIES}
-        onChange={(newState) => setState(newState)}
-      />
-    </Section>
+        <SearchBox
+          params={state}
+          cities={CITITES}
+          categories={CATEGORIES}
+          onChange={(newState) => setState(newState)}
+        />
+      </Section>
+
+      <Section></Section>
+    </>
   );
 }
