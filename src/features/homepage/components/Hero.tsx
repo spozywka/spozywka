@@ -23,7 +23,6 @@ const SubTitle = styled.h2`
   text-align: center;
 `;
 
-
 export function Hero() {
   return (
     <Wrapper>

@@ -37,7 +37,7 @@ export function Navbar() {
         <Logo>Spozywka</Logo>
       </Link>
 
-      <Link to={paths.profile}>
+      <Link to={'/profile'}>
         <Button size="large">
           <Text>
             My Profile&nbsp;

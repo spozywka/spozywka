@@ -1,23 +1,50 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { Card } from '../../common/components/Card';
 import { LoadWrapper } from '../../common/components/LoadWrapper';
-import { Section } from '../../common/components/Section';
+import { Navbar } from '../../common/components/Navbar';
 import { useRequest } from '../../common/hooks/useRequest';
 import { loggedInUserId } from '../../constants';
 import { orderService } from '../../data/order.service';
-import { OrderList } from './components/OrderList';
-import { Card } from '../../common/components/Card';
-import styled from 'styled-components';
 import { desktopBreakpoint } from '../../styles';
+import { OrderDetails } from './components/OrderDetails';
+import { OrderList } from './components/OrderList';
 
-const Wrapper = styled.div`
-  width: 100vh;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 300px 1fr;
+const NavbarWrapper = styled.div`
+  padding: 10px 10px 0 10px;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    padding: 20px 20px 0 20px;
+  }
 `;
 
-const DetailsCard = styled.div<{ hasOrder: boolean }>`
+const Wrapper = styled.div`
+  width: 100vw;
+  height: calc(100vh - 50px);
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    height: calc(100vh - 60px);
+    grid-template-columns: 400px 1fr;
+    grid-gap: 20px;
+    padding: 20px;
+  }
+`;
+
+const ListCard = styled(Card)<{ hasOrder: boolean }>`
+  padding: 10px;
+  display: ${(props) => (props.hasOrder ? 'none' : 'block')};
+
+  @media (min-width: ${desktopBreakpoint}) {
+    padding: 20px;
+    display: block;
+  }
+`;
+
+const DetailsCard = styled(Card)<{ hasOrder: boolean }>`
   display: ${(props) => (props.hasOrder ? 'block' : 'none')};
 
   @media (min-width: ${desktopBreakpoint}) {
@@ -34,25 +61,31 @@ export function Profile() {
   const currentOrder = data?.find((o) => !!orderId && o.id === +orderId);
 
   return (
-    <Section>
+    <>
+      <NavbarWrapper>
+        <Navbar />
+      </NavbarWrapper>
+
       <LoadWrapper pending={pending} failure={failure}>
         <Wrapper>
-          <Card>
+          <ListCard hasOrder={!!currentOrder}>
             <OrderList
               orders={data.map((o) => ({
-                name: o.name,
+                name: o.offer?.title,
                 orderId: o.id,
-                photoUrl: o.photo_url,
+                photoUrl: o.offer?.photo_url,
                 onClick() {
                   history.push(`/profile/${o.id}`);
                 },
               }))}
             />
-          </Card>
+          </ListCard>
 
-          <DetailsCard hasOrder={!!currentOrder}></DetailsCard>
+          <DetailsCard hasOrder={!!currentOrder}>
+            <OrderDetails />
+          </DetailsCard>
         </Wrapper>
       </LoadWrapper>
-    </Section>
+    </>
   );
 }

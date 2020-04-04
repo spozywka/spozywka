@@ -6,7 +6,7 @@ class OrderService {
   baseUrl = '/orders';
 
   async createOrder(offerId: number, quantity: Record<number, number>): Promise<Order> {
-    const body: Order = {
+    const body: Partial<Order> = {
       offer_id: `${offerId}`,
       user_id: `${loggedInUserId}`,
       products: Object.entries(quantity).map(([productId, qty]) => ({

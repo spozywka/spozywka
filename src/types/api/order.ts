@@ -9,6 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Offer } from './offer';
 import { Transaction } from './transaction';
 
 export interface Order {
@@ -17,4 +18,7 @@ export interface Order {
   readonly offer_id?: string;
   readonly order_date?: string;
   products: Array<Transaction>;
+  delivery_date: Date;
+  readonly total?: string;
+  offer?: Offer;
 }

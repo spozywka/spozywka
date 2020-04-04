@@ -57,7 +57,7 @@ export function Summary() {
             <Button size="large">Go back to homepage</Button>
           </Link>
           &nbsp; or &nbsp;
-          <Link to={paths.profile}>
+          <Link to="/profile">
             <Button type="primary" size="large">
               Check your order
             </Button>
