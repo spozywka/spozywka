@@ -18,7 +18,7 @@ export interface Order {
   readonly offer_id?: string;
   readonly order_date?: string;
   products: Array<Transaction>;
-  delivery_date: Date;
-  readonly total?: string;
+  delivery_date: string;
+  readonly total?: number;
   offer?: Offer;
 }

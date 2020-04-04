@@ -8,7 +8,7 @@ import { useRequest } from '../../common/hooks/useRequest';
 import { loggedInUserId } from '../../constants';
 import { orderService } from '../../data/order.service';
 import { desktopBreakpoint } from '../../styles';
-import { OrderDetails } from './components/OrderDetails';
+import { OrderDetails } from './containers/OrderDetails';
 import { OrderList } from './components/OrderList';
 
 const NavbarWrapper = styled.div`
@@ -82,7 +82,15 @@ export function Profile() {
           </ListCard>
 
           <DetailsCard hasOrder={!!currentOrder}>
-            <OrderDetails />
+            {!!currentOrder && (
+              <OrderDetails
+                deliveryDate={currentOrder.delivery_date}
+                orderDate={currentOrder.order_date}
+                orderId={currentOrder.offer?.id}
+                total={currentOrder.total}
+                vendorId={currentOrder.offer?.user_id}
+              />
+            )}
           </DetailsCard>
         </Wrapper>
       </LoadWrapper>

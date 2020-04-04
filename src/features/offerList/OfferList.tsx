@@ -4,12 +4,12 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { LoadWrapper } from '../../common/components/LoadWrapper';
 import { Navbar } from '../../common/components/Navbar';
+import { Pins } from '../../common/components/Pins';
 import { useRequest } from '../../common/hooks/useRequest';
 import { offerService } from '../../data/offer.service';
+import { desktopBreakpoint } from '../../styles';
 import { OfferListSearchParams } from '../../types/offerList';
 import { List } from './components/List';
-import { Pins } from './components/Pins';
-import { desktopBreakpoint } from '../../styles';
 
 const Wrapper = styled.div`
   width: 100vw;
