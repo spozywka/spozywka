@@ -71,7 +71,7 @@ export function Profile() {
         <Wrapper>
           <ListCard hasOrder={!!currentOrder}>
             <OrderList
-              orders={data.map((o) => ({
+              orders={data.reverse().map((o) => ({
                 name: o.offer?.title,
                 orderId: o.id,
                 photoUrl: o.offer?.photo_url,
