@@ -1,6 +1,6 @@
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Footer } from '../../common/components/Footer';
 import { LoadWrapper } from '../../common/components/LoadWrapper';
@@ -11,6 +11,7 @@ import { PersonDetailsContainer } from '../../common/containers/PersonDetailsCon
 import { useRequest } from '../../common/hooks/useRequest';
 import { paths } from '../../constants';
 import { offerService } from '../../data/offer.service';
+import { orderService } from '../../data/order.service';
 import { productService } from '../../data/product.service';
 import { desktopBreakpoint, lightGrey } from '../../styles';
 import { Address } from './components/Address';
@@ -38,6 +39,7 @@ const OrderButton = styled(Button)`
 `;
 
 export function Checkout() {
+  const history = useHistory();
   const { id } = useParams<{ id?: string }>();
 
   const { data: offer, ...offerMeta } = useRequest(() => {
@@ -56,18 +58,30 @@ export function Checkout() {
     return productService.getProducts({ offerId: +id });
   }, null);
 
-  const [qunatities, setQuantities] = useState<Record<number, number>>({});
-  const total = Object.entries(qunatities).reduce(
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
+  const total = Object.entries(quantities).reduce(
     (acc, [id, qty]) => acc + (products?.find((p) => p.id === +id)?.price || 0) * qty,
     0
   );
 
   const orderDisabled = total < 1;
-  const orderButton = (
-    <OrderButton type="primary" size="large" disabled={orderDisabled}>
-      {total > 0 ? `Confirm and pay $${total}` : 'Please pick an item'}
-    </OrderButton>
-  );
+
+  const submit = async () => {
+    if (orderDisabled || !offer?.id) {
+      return;
+    }
+
+    try {
+      await orderService.createOrder(offer.id, quantities);
+
+      history.push(paths.summary);
+    } catch (error) {
+      notification.error({
+        message: 'Error while placing order',
+        description: 'There was some issue while we processed your order, please try again.',
+      });
+    }
+  };
 
   return (
     <>
@@ -88,7 +102,7 @@ export function Checkout() {
                     id: p.id,
                     name: p.name,
                     price: p.price,
-                    qty: p.id ? qunatities[p.id] || 0 : 0,
+                    qty: p.id ? quantities[p.id] || 0 : 0,
                   }))}
                   onChange={(id, qty) => {
                     if (typeof id !== 'number' || typeof qty !== 'number') {
@@ -96,7 +110,7 @@ export function Checkout() {
                     }
 
                     setQuantities({
-                      ...qunatities,
+                      ...quantities,
                       [id]: qty,
                     });
                   }}
@@ -106,7 +120,9 @@ export function Checkout() {
               <PersonDetailsContainer userId={offer.user_id} city={offer.city} />
               <Thanks>Thank you for supporting local business.</Thanks>
 
-              {orderDisabled ? orderButton : <Link to={paths.summary}>{orderButton}</Link>}
+              <OrderButton type="primary" size="large" disabled={orderDisabled} onClick={submit}>
+                {total > 0 ? `Confirm and pay $${total}` : 'Please pick an item'}
+              </OrderButton>
             </TwoSideGrid>
           )}
         </LoadWrapper>
