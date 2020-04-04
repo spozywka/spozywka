@@ -7,6 +7,7 @@ export const paths = {
   offerList: '/offers',
   offerDetails: '/offers/:id',
   checkout: '/offers/:id/checkout',
+  profile: '/profile',
 };
 
 export const defaultOfferListParams: OfferListSearchParams = {
@@ -14,3 +15,5 @@ export const defaultOfferListParams: OfferListSearchParams = {
   city: 'Warsaw',
   category: 'Food',
 };
+
+export const loggedInUserId = 13;

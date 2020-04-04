@@ -16,8 +16,19 @@ const Logo = styled.div`
   font-weight: bold;
 `;
 
+const Avatar = styled.div`
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('/images/user.png');
+  background-size: cover;
+  border-radius: 50%;
+`;
+
 const Text = styled.span`
   font-weight: bold;
+  display: flex !important;
+  align-items: center;
 `;
 
 export function Navbar() {
@@ -27,9 +38,14 @@ export function Navbar() {
         <Logo>Spozywka</Logo>
       </Link>
 
-      <Button size="large">
-        <Text>Sign in / Register</Text>
-      </Button>
+      <Link to={paths.profile}>
+        <Button size="large">
+          <Text>
+            My Profile&nbsp;
+            <Avatar />
+          </Text>
+        </Button>
+      </Link>
     </Wrapper>
   );
 }
