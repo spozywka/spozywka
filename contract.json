@@ -21,7 +21,14 @@
             "required": false,
             "type": "string"
           },
-          { "name": "city", "in": "query", "description": "", "required": false, "type": "string" }
+          { "name": "city", "in": "query", "description": "", "required": false, "type": "string" },
+          {
+            "name": "ordering",
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "required": false,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -123,7 +130,7 @@
       },
       "post": {
         "operationId": "orders_create",
-        "description": "",
+        "description": "DRF is a bitch.\nNested create has empty valid_data.",
         "parameters": [
           {
             "name": "data",
@@ -503,7 +510,7 @@
       }
     },
     "Order": {
-      "required": ["products"],
+      "required": ["products", "delivery_date"],
       "type": "object",
       "properties": {
         "id": { "title": "ID", "type": "integer", "readOnly": true },
@@ -515,7 +522,10 @@
           "format": "date-time",
           "readOnly": true
         },
-        "products": { "type": "array", "items": { "$ref": "#/definitions/Transaction" } }
+        "products": { "type": "array", "items": { "$ref": "#/definitions/Transaction" } },
+        "delivery_date": { "title": "Delivery date", "type": "string", "format": "date-time" },
+        "total": { "title": "Total", "type": "string", "readOnly": true },
+        "offer": { "$ref": "#/definitions/Offer" }
       }
     },
     "Product": {

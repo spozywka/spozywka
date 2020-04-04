@@ -7,7 +7,7 @@ export const paths = {
   offerList: '/offers',
   offerDetails: '/offers/:id',
   checkout: '/offers/:id/checkout',
-  profile: '/profile',
+  profile: '/profile/:orderId',
   summary: '/summary',
 };
 

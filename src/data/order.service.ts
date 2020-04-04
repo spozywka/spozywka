@@ -19,6 +19,12 @@ class OrderService {
 
     return res.data;
   }
+
+  async getOrders(userId: number): Promise<Order[]> {
+    const res = await http.get<Order[]>(`${this.baseUrl}/`, { params: { user_id: userId } });
+
+    return res.data;
+  }
 }
 
 export const orderService = new OrderService();
