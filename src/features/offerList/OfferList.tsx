@@ -2,12 +2,13 @@ import { parse } from 'qs';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadWrapper } from '../../components/LoadWrapper';
-import { Navbar } from '../../components/Navbar';
+import { LoadWrapper } from '../../common/components/LoadWrapper';
+import { Navbar } from '../../common/components/Navbar';
+import { useRequest } from '../../common/hooks/useRequest';
 import { offerService } from '../../data/offer.service';
-import { useRequest } from '../../hooks/useRequest';
 import { OfferListSearchParams } from '../../types/offerList';
 import { List } from './components/List';
+import { Pins } from './components/Pins';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -45,7 +46,9 @@ export function OfferList() {
         </LoadWrapper>
       </ListWrapper>
 
-      <Map />
+      <Map>
+        <Pins count={offers.length} />
+      </Map>
     </Wrapper>
   );
 }

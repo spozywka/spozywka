@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { paths } from '../constants';
+import { paths } from '../../constants';
 
 const Wrapper = styled.div`
   display: flex;

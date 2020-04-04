@@ -3,7 +3,7 @@ import { stringify } from 'qs';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Card } from '../../../components/Card';
+import { Card } from '../../../common/components/Card';
 import { paths } from '../../../constants';
 import { desktopBreakpoint, lightGrey } from '../../../styles';
 import { OfferListSearchParams } from '../../../types/offerList';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '../../../components/Card';
-import { DateFormat } from '../../../components/DateFormat';
+import { Card } from '../../../common/components/Card';
+import { DateFormat } from '../../../common/components/DateFormat';
 import { darkGrey, lightGrey } from '../../../styles';
 
 const Wrapper = styled(Card)`
