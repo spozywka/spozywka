@@ -37,6 +37,7 @@ const Wrapper = styled.div`
 const ListCard = styled(Card)<{ hasOrder: boolean }>`
   padding: 10px;
   display: ${(props) => (props.hasOrder ? 'none' : 'block')};
+  overflow: auto;
 
   @media (min-width: ${desktopBreakpoint}) {
     padding: 20px;

@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { darkGrey, desktopBreakpoint, lightGrey } from '../../../styles';
-import { VendorData } from './VendorData';
 import { DateFormat } from '../../../common/components/DateFormat';
 import { Pins } from '../../../common/components/Pins';
+import { darkGrey, desktopBreakpoint, lightGrey } from '../../../styles';
+import { Truck } from '../components/Truck';
+import { VendorData } from './VendorData';
 
 const Wrapper = styled.div`
   display: grid;
@@ -42,6 +43,7 @@ const Map = styled.div`
   background: url('/images/map.png');
   background-size: cover;
   display: none;
+  position: relative;
 
   @media (min-width: ${desktopBreakpoint}) {
     display: block;
@@ -73,6 +75,7 @@ export function OrderDetails(props: Props) {
 
       <Map>
         <Pins count={1} />
+        <Truck />
       </Map>
     </Wrapper>
   );
