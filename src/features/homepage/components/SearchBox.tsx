@@ -20,6 +20,7 @@ const Wrapper = styled(Card)`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 20px 1fr 20px 1fr 1fr;
+  background: white;
 
   @media (min-width: ${desktopBreakpoint}) {
     grid-template-columns: 1fr 21px 1fr 21px 1fr 1.3fr;

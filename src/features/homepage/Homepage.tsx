@@ -1,34 +1,52 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Navbar } from '../../common/components/Navbar';
 import { Section } from '../../common/components/Section';
 import { defaultOfferListParams } from '../../constants';
 import { OfferListSearchParams } from '../../types/offerList';
+import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
-import { Navbar } from '../../common/components/Navbar';
+import { Houses } from './components/Houses';
+import { HowItWorks } from './components/HowItWorks';
 import { SearchBox } from './components/SearchBox';
 
 const CITITES = ['Warsaw', 'Cracow', 'Wroclaw', 'Lodz', 'Szczecin'];
 
 const CATEGORIES = ['Food', 'Drinks', 'Plants'];
 
+const Background = styled.div`
+  background: radial-gradient(
+    42.71% 42.71% at 51.17% 60.94%,
+    rgba(178, 251, 185, 0.51) 2.85%,
+    rgba(238, 255, 245, 0.33) 78.54%
+  );
+`;
+
 export function Homepage() {
   const [state, setState] = useState<OfferListSearchParams>(defaultOfferListParams);
 
   return (
     <>
-      <Section>
-        <Navbar />
+      <Background>
+        <Section>
+          <Navbar />
 
-        <Hero />
+          <Hero />
 
-        <SearchBox
-          params={state}
-          cities={CITITES}
-          categories={CATEGORIES}
-          onChange={(newState) => setState(newState)}
-        />
-      </Section>
+          <SearchBox
+            params={state}
+            cities={CITITES}
+            categories={CATEGORIES}
+            onChange={(newState) => setState(newState)}
+          />
+        </Section>
 
-      <Section></Section>
+        <Houses />
+      </Background>
+
+      <HowItWorks />
+
+      <Footer />
     </>
   );
 }
