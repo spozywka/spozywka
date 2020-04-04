@@ -25,8 +25,6 @@ const ListWrapper = styled.div`
   max-height: 100%;
   overflow: auto;
   padding: 10px;
-  display: grid;
-  grid-gap: 20px;
 
   @media (min-width: ${desktopBreakpoint}) {
     width: 50%;

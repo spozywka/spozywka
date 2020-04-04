@@ -6,6 +6,7 @@ import { Offer } from '../../../types/api/offer';
 import { OfferCard } from './OfferCard';
 
 const Wrapper = styled.div`
+  margin-top: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
