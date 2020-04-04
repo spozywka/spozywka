@@ -9,10 +9,12 @@ const Wrapper = styled(Card)`
   align-items: center;
   padding: 10px;
   transition: transform 0.2s ease-in;
+  margin-bottom: 10px;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
+    z-index: 1;
   }
 `;
 
