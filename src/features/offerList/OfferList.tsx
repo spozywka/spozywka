@@ -9,6 +9,7 @@ import { offerService } from '../../data/offer.service';
 import { OfferListSearchParams } from '../../types/offerList';
 import { List } from './components/List';
 import { Pins } from './components/Pins';
+import { desktopBreakpoint } from '../../styles';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -18,10 +19,17 @@ const Wrapper = styled.div`
 `;
 
 const ListWrapper = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
   max-width: 800px;
-  padding: 0 20px 20px 20px;
+  max-height: 100%;
+  overflow: auto;
+  padding: 10px 10px 10px 10px;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    width: 50%;
+    padding: 0 20px 20px 20px;
+  }
 `;
 
 const Map = styled.div`
@@ -29,6 +37,11 @@ const Map = styled.div`
   height: 100%;
   background: url('/images/map.png');
   background-size: cover;
+  display: none;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    display: block;
+  }
 `;
 
 export function OfferList() {

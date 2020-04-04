@@ -18,10 +18,9 @@ interface Props {
 export function List(props: Props) {
   return (
     <Wrapper>
-      {props.offers.map((offer) => (
-        <Link to={`${paths.offerList}/${offer.id}`}>
+      {props.offers.map((offer, i) => (
+        <Link to={`${paths.offerList}/${offer.id}`} key={i}>
           <OfferCard
-            key={offer.title}
             category={offer.category}
             city={offer.city}
             date={offer.delivery_date}

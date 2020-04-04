@@ -5,6 +5,7 @@ import { Icon } from 'antd';
 
 const Wrapper = styled(Card)`
   width: 100%;
+  padding-bottom: 20px;
 `;
 
 const Background = styled.div`
@@ -47,11 +48,10 @@ const Phone = styled.div`
   font-size: 24px;
   cursor: pointer;
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 interface Props {
-  city: string;
+  city?: string;
 }
 
 export function PersonDetails(props: Props) {

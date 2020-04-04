@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Footer } from '../../common/components/Footer';
 import { Navbar } from '../../common/components/Navbar';
 import { Section } from '../../common/components/Section';
 import { defaultOfferListParams } from '../../constants';
 import { OfferListSearchParams } from '../../types/offerList';
-import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Houses } from './components/Houses';
 import { HowItWorks } from './components/HowItWorks';

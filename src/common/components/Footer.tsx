@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { orange } from '../../../styles';
+import { orange } from '../../styles';
 
 const Wrapper = styled.div`
   width: 100%;
