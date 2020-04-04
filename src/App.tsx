@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { paths, loggedInUserId } from './constants';
+import { CurrentUserProvider } from './common/contexts/CurrentUser';
+import { loggedInUserId, paths } from './constants';
 import { Checkout } from './features/checkout/Checkout';
 import { Homepage } from './features/homepage/Homepage';
 import { OfferDetails } from './features/offerDetails/OfferDetails';
 import { OfferList } from './features/offerList/OfferList';
-import { CurrentUserProvider } from './common/contexts/CurrentUser';
+import { Summary } from './features/summary/Summary';
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
 
           <Route path={paths.offerDetails}>
             <OfferDetails />
+          </Route>
+
+          <Route path={paths.summary}>
+            <Summary />
           </Route>
 
           <Redirect to={paths.homepage} />

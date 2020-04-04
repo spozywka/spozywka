@@ -8,6 +8,7 @@ export const paths = {
   offerDetails: '/offers/:id',
   checkout: '/offers/:id/checkout',
   profile: '/profile',
+  summary: '/summary',
 };
 
 export const defaultOfferListParams: OfferListSearchParams = {

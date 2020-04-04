@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Footer } from '../../common/components/Footer';
 import { LoadWrapper } from '../../common/components/LoadWrapper';
@@ -9,6 +9,7 @@ import { Section } from '../../common/components/Section';
 import { TwoSideGrid } from '../../common/components/TwoSideGrid';
 import { PersonDetailsContainer } from '../../common/containers/PersonDetailsContainer';
 import { useRequest } from '../../common/hooks/useRequest';
+import { paths } from '../../constants';
 import { offerService } from '../../data/offer.service';
 import { productService } from '../../data/product.service';
 import { desktopBreakpoint, lightGrey } from '../../styles';
@@ -61,6 +62,13 @@ export function Checkout() {
     0
   );
 
+  const orderDisabled = total < 1;
+  const orderButton = (
+    <OrderButton type="primary" size="large" disabled={orderDisabled}>
+      {total > 0 ? `Confirm and pay $${total}` : 'Please pick an item'}
+    </OrderButton>
+  );
+
   return (
     <>
       <ContentSection>
@@ -98,9 +106,7 @@ export function Checkout() {
               <PersonDetailsContainer userId={offer.user_id} city={offer.city} />
               <Thanks>Thank you for supporting local business.</Thanks>
 
-              <OrderButton type="primary" size="large" disabled={total < 1}>
-                {total > 0 ? `Confirm and pay $${total}` : 'Please pick an item'}
-              </OrderButton>
+              {orderDisabled ? orderButton : <Link to={paths.summary}>{orderButton}</Link>}
             </TwoSideGrid>
           )}
         </LoadWrapper>

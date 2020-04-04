@@ -23,9 +23,6 @@ const SubTitle = styled.h2`
   text-align: center;
 `;
 
-interface Props {
-  className?: string;
-}
 
 export function Hero() {
   return (
