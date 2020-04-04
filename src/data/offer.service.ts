@@ -14,7 +14,7 @@ class OfferService {
   }
 
   async getById(id: number): Promise<Offer> {
-    const res = await http.get<Offer>(`${this.baseUrl}${id}`);
+    const res = await http.get<Offer>(`${this.baseUrl}/${id}`);
 
     const offer = res.data;
 

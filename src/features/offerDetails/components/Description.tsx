@@ -6,7 +6,8 @@ import { lightGrey } from '../../../styles';
 const Wrapper = styled(Card)`
   width: 100%;
   padding: 20px;
-  font-size: 16px;
+  font-size: 18px;
+  white-space: pre-line;
   color: ${lightGrey};
 `;
 

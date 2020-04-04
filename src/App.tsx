@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { paths } from './constants';
+import { Checkout } from './features/checkout/Checkout';
 import { Homepage } from './features/homepage/Homepage';
-import { OfferList } from './features/offerList/OfferList';
 import { OfferDetails } from './features/offerDetails/OfferDetails';
+import { OfferList } from './features/offerList/OfferList';
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
 
         <Route exact={true} path={paths.offerList}>
           <OfferList />
+        </Route>
+
+        <Route path={paths.checkout}>
+          <Checkout />
         </Route>
 
         <Route path={paths.offerDetails}>

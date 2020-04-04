@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { Card } from '../../../common/components/Card';
-import React from 'react';
 import { Icon } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import { Card } from './Card';
 
 const Wrapper = styled(Card)`
   width: 100%;
@@ -52,6 +52,7 @@ const Phone = styled.div`
 
 interface Props {
   city?: string;
+  name?: string;
 }
 
 export function PersonDetails(props: Props) {
@@ -63,7 +64,7 @@ export function PersonDetails(props: Props) {
         <Avatar />
       </Background>
 
-      <Name>Good Farming</Name>
+      <Name>{props.name}</Name>
 
       <Phone>
         Show Number <Icon type="phone" />

@@ -6,6 +6,7 @@ export const paths = {
   homepage: '/',
   offerList: '/offers',
   offerDetails: '/offers/:id',
+  checkout: '/offers/:id/checkout',
 };
 
 export const defaultOfferListParams: OfferListSearchParams = {

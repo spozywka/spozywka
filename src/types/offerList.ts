@@ -3,3 +3,7 @@ export interface OfferListSearchParams {
   city: string;
   category: string;
 }
+
+export interface ProductsSearchParams {
+  offerId: number;
+}

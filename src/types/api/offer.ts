@@ -19,7 +19,7 @@ export interface Offer {
   distance?: string;
   delivery_date?: string;
   photo_url?: string;
-  user: number;
+  user_id: number;
 }
 export type CategoryEnum = 'Food' | 'Drinks' | 'Plants';
 export const CategoryEnum = {
