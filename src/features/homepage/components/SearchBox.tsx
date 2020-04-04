@@ -1,13 +1,16 @@
-import { Select, Button } from 'antd';
+import { Button, Select } from 'antd';
+import { stringify } from 'qs';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { lightGrey, desktopBreakpoint } from '../../../styles';
+import { Card } from '../../../components/Card';
+import { paths } from '../../../constants';
+import { desktopBreakpoint, lightGrey } from '../../../styles';
+import { OfferListSearchParams } from '../../../types/offerList';
 
 const { Option } = Select;
 
-const Wrapper = styled.div`
-  box-shadow: 0px 6px 12px -2px rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+const Wrapper = styled(Card)`
   padding: 20px 40px;
   display: flex;
   width: 100%;
@@ -44,8 +47,9 @@ const Spacer = styled.div`
   }
 `;
 
-const Label = styled.span`
+const Label = styled.div`
   color: ${lightGrey};
+  text-align: center;
 `;
 
 const ButtonWrapper = styled.div`
@@ -57,16 +61,15 @@ const ButtonWrapper = styled.div`
 `;
 
 interface Props {
-  who: 'consumer' | 'vendor';
-  city: string;
+  params: OfferListSearchParams;
   cities: string[];
-  category: string;
   categories: string[];
-  onChange(who: Props['who'], city: Props['city'], category: Props['category']): void;
+  onChange(params: OfferListSearchParams): void;
 }
 
 export function SearchBox(props: Props) {
   const { cities, categories } = props;
+  const { city, category, who } = props.params;
 
   return (
     <Wrapper>
@@ -74,9 +77,9 @@ export function SearchBox(props: Props) {
         <Label>You are:</Label>
 
         <Select
-          value={props.who}
+          value={who}
           onChange={(value: 'consumer' | 'vendor') =>
-            props.onChange(value, props.city, props.category)
+            props.onChange({ who: value, city, category })
           }
         >
           <Option value="consumer">Consumer</Option>
@@ -90,12 +93,12 @@ export function SearchBox(props: Props) {
         <Label>Your city:</Label>
 
         <Select
-          value={props.city}
-          onChange={(value: string) => props.onChange(props.who, value, props.category)}
+          value={city}
+          onChange={(value: string) => props.onChange({ who, city: value, category })}
         >
-          {cities.map((city) => (
-            <Option value={city} key={city}>
-              {city}
+          {cities.map((c) => (
+            <Option value={c} key={c}>
+              {c}
             </Option>
           ))}
         </Select>
@@ -107,21 +110,32 @@ export function SearchBox(props: Props) {
         <Label>Category:</Label>
 
         <Select
-          value={props.category}
-          onChange={(value: string) => props.onChange(props.who, props.city, value)}
+          value={category}
+          onChange={(value: string) => props.onChange({ who, city, category: value })}
         >
-          {categories.map((category) => (
-            <Option value={category} key={category}>
-              {category}
+          {categories.map((c) => (
+            <Option value={c} key={c}>
+              {c}
             </Option>
           ))}
         </Select>
       </Field>
 
       <ButtonWrapper>
-        <Button style={{ width: '100%' }} type="primary" size="large">
-          {props.who === 'consumer' ? 'Search' : 'Offer'}
-        </Button>
+        <Link
+          to={{
+            pathname: paths.offerList,
+            search: stringify({
+              city: city,
+              who: who,
+              category: category,
+            }),
+          }}
+        >
+          <Button style={{ width: '100%' }} type="primary" size="large">
+            {who === 'consumer' ? 'Search' : 'Offer'}
+          </Button>
+        </Link>
       </ButtonWrapper>
     </Wrapper>
   );

@@ -1,0 +1,220 @@
+{
+  "swagger": "2.0",
+  "info": { "title": "Foodie API", "version": "v1" },
+  "host": "j9ynwwcv1c.execute-api.us-east-1.amazonaws.com",
+  "schemes": ["https"],
+  "basePath": "/dev",
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": { "Basic": { "type": "basic" } },
+  "security": [{ "Basic": [] }],
+  "paths": {
+    "/offers": {
+      "get": {
+        "operationId": "offers_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "type": "array", "items": { "$ref": "#/definitions/Offer" } }
+          }
+        },
+        "tags": ["offers"]
+      },
+      "post": {
+        "operationId": "offers_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Offer" }
+          }
+        ],
+        "responses": { "201": { "description": "", "schema": { "$ref": "#/definitions/Offer" } } },
+        "tags": ["offers"]
+      },
+      "parameters": []
+    },
+    "/offers{id}/": {
+      "get": {
+        "operationId": "read",
+        "description": "",
+        "parameters": [],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/Offer" } } },
+        "tags": ["read"]
+      },
+      "put": {
+        "operationId": "update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Offer" }
+          }
+        ],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/Offer" } } },
+        "tags": ["update"]
+      },
+      "patch": {
+        "operationId": "partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Offer" }
+          }
+        ],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/Offer" } } },
+        "tags": ["partial_update"]
+      },
+      "delete": {
+        "operationId": "delete",
+        "description": "",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["delete"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this offer.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/users": {
+      "get": {
+        "operationId": "users_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": { "type": "array", "items": { "$ref": "#/definitions/User" } }
+          }
+        },
+        "tags": ["users"]
+      },
+      "post": {
+        "operationId": "users_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/User" }
+          }
+        ],
+        "responses": { "201": { "description": "", "schema": { "$ref": "#/definitions/User" } } },
+        "tags": ["users"]
+      },
+      "parameters": []
+    },
+    "/users{id}/": {
+      "get": {
+        "operationId": "read",
+        "description": "",
+        "parameters": [],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/User" } } },
+        "tags": ["read"]
+      },
+      "put": {
+        "operationId": "update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/User" }
+          }
+        ],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/User" } } },
+        "tags": ["update"]
+      },
+      "patch": {
+        "operationId": "partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/User" }
+          }
+        ],
+        "responses": { "200": { "description": "", "schema": { "$ref": "#/definitions/User" } } },
+        "tags": ["partial_update"]
+      },
+      "delete": {
+        "operationId": "delete",
+        "description": "",
+        "parameters": [],
+        "responses": { "204": { "description": "" } },
+        "tags": ["delete"]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this user.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "Offer": {
+      "required": ["user"],
+      "type": "object",
+      "properties": {
+        "id": { "title": "ID", "type": "integer", "readOnly": true },
+        "title": { "title": "Title", "type": "string", "maxLength": 255, "minLength": 1 },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "maxLength": 1024,
+          "minLength": 1
+        },
+        "category": { "title": "Category", "type": "string", "enum": ["Food", "Drinks", "Plants"] },
+        "city": {
+          "title": "City",
+          "type": "string",
+          "enum": ["Warsaw", "Wroclaw", "Cracow", "Lodz", "Szczecin"]
+        },
+        "distance": { "title": "Distance", "type": "string", "maxLength": 255, "minLength": 1 },
+        "delivery_date": { "title": "Delivery date", "type": "string", "format": "date-time" },
+        "photo_url": { "title": "Photo url", "type": "string", "maxLength": 2048, "minLength": 1 },
+        "user": { "title": "User", "type": "integer" }
+      }
+    },
+    "User": {
+      "required": ["username"],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+          "type": "string",
+          "pattern": "^[\\w.@+-]+$",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "first_name": { "title": "First name", "type": "string", "maxLength": 30 },
+        "last_name": { "title": "Last name", "type": "string", "maxLength": 150 },
+        "email": { "title": "Email address", "type": "string", "format": "email", "maxLength": 254 }
+      }
+    }
+  }
+}
