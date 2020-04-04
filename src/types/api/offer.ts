@@ -17,8 +17,8 @@ export interface Offer {
   category?: CategoryEnum;
   city?: CityEnum;
   distance?: string;
-  deliveryDate?: Date;
-  photoUrl?: string;
+  delivery_date?: string;
+  photo_url?: string;
   user: number;
 }
 export type CategoryEnum = 'Food' | 'Drinks' | 'Plants';

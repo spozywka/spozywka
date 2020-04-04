@@ -3,6 +3,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Navbar } from '../../components/Navbar';
+import { offerService } from '../../data/offer.service';
+import { useRequest } from '../../hooks/useRequest';
 import { OfferListSearchParams } from '../../types/offerList';
 import { List } from './components/List';
 
@@ -21,7 +23,7 @@ const ListWrapper = styled.div`
 `;
 
 const Map = styled.div`
-  flex: 1 auto;
+  flex: 1 1 auto;
   height: 100%;
   background: url('/images/map.png');
   background-size: cover;
@@ -30,13 +32,14 @@ const Map = styled.div`
 export function OfferList() {
   const location = useLocation();
   const params = parse(location.search, { ignoreQueryPrefix: true }) as OfferListSearchParams;
+  const { data: offers } = useRequest(() => offerService.getOffers(params), []);
 
   return (
     <Wrapper>
       <ListWrapper>
         <Navbar />
 
-        <List />
+        <List offers={offers} />
       </ListWrapper>
 
       <Map />

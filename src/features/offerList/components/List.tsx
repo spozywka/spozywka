@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { OfferCard } from './OfferCard';
+import { Offer } from '../../../types/api/offer';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -8,23 +9,22 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const OFFERS = [
-  {
-    title: 'Best homemade bread!',
-    category: 'Food',
-    distance: '0.7km from you',
-    city: 'Wroclaw, Psie Pole',
-    date: '17.04',
-  },
-];
-
-interface Props {}
+interface Props {
+  offers: Offer[];
+}
 
 export function List(props: Props) {
   return (
     <Wrapper>
-      {OFFERS.map((offer) => (
-        <OfferCard key={offer.title} {...offer} />
+      {props.offers.map((offer) => (
+        <OfferCard
+          key={offer.title}
+          category={offer.category}
+          city={offer.city}
+          date={offer.delivery_date}
+          distance={offer.distance}
+          title={offer.title}
+        />
       ))}
     </Wrapper>
   );

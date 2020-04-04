@@ -1,6 +1,8 @@
-import styled from 'styled-components';
-import React from 'react';
 import { Button } from 'antd';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { paths } from '../constants';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +23,9 @@ const Text = styled.span`
 export function Navbar() {
   return (
     <Wrapper>
-      <Logo>Spozywka</Logo>
+      <Link to={paths.homepage}>
+        <Logo>Spozywka</Logo>
+      </Link>
 
       <Button size="large">
         <Text>Sign in / Register</Text>

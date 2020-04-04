@@ -35,11 +35,11 @@ const Label = styled.span`
 `;
 
 interface Props {
-  title: string;
-  category: string;
-  distance: string;
-  city: string;
-  date: string;
+  title?: string;
+  category?: string;
+  distance?: string;
+  city?: string;
+  date?: string;
 }
 
 export function OfferCard({ title, category, distance, city, date }: Props) {
