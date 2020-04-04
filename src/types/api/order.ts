@@ -9,14 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Transaction } from './transaction';
 
-export interface User {
+export interface Order {
   readonly id?: number;
-  /**
-   * Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-   */
-  username: string;
-  first_name?: string;
-  last_name?: string;
-  email?: string;
+  readonly user_id?: string;
+  readonly offer_id?: string;
+  readonly order_date?: string;
+  products: Array<Transaction>;
 }

@@ -1,8 +1,8 @@
+import { Button } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import { Section } from '../../../common/components/Section';
-import { darkGrey, lightGrey } from '../../../styles';
-import { Button } from 'antd';
+import { darkGrey, desktopBreakpoint, lightGrey } from '../../../styles';
 
 const Wrapper = styled(Section)`
   display: flex;
@@ -31,9 +31,13 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-  flex: none;
-  display: flex;
-  flex-direction: column;
+  display: none;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const SubTitle = styled.h3`
@@ -56,7 +60,11 @@ const Opinion = styled.div`
 `;
 
 const LearnMore = styled(Button)`
-  width: 200px;
+  width: 100%;
+
+  @media (min-width: ${desktopBreakpoint}) {
+    width: 200px;
+  }
 `;
 
 export function HowItWorks() {

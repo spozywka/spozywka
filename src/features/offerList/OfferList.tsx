@@ -24,11 +24,13 @@ const ListWrapper = styled.div`
   max-width: 800px;
   max-height: 100%;
   overflow: auto;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
+  display: grid;
+  grid-gap: 20px;
 
   @media (min-width: ${desktopBreakpoint}) {
     width: 50%;
-    padding: 0 20px 20px 20px;
+    padding: 20px;
   }
 `;
 

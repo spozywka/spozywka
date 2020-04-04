@@ -6,6 +6,7 @@ import { Checkout } from './features/checkout/Checkout';
 import { Homepage } from './features/homepage/Homepage';
 import { OfferDetails } from './features/offerDetails/OfferDetails';
 import { OfferList } from './features/offerList/OfferList';
+import { Profile } from './features/profile/Profile';
 import { Summary } from './features/summary/Summary';
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
 
           <Route path={paths.summary}>
             <Summary />
+          </Route>
+
+          <Route path={paths.profile}>
+            <Profile />
           </Route>
 
           <Redirect to={paths.homepage} />

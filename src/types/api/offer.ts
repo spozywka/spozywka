@@ -12,6 +12,7 @@
 
 export interface Offer {
   readonly id?: number;
+  readonly user_id?: number;
   title?: string;
   description?: string;
   category?: CategoryEnum;
@@ -19,7 +20,6 @@ export interface Offer {
   distance?: string;
   delivery_date?: string;
   photo_url?: string;
-  user_id: number;
 }
 export type CategoryEnum = 'Food' | 'Drinks' | 'Plants';
 export const CategoryEnum = {

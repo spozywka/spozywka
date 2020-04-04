@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { desktopBreakpoint } from '../../styles';
 
 export const TwoSideGrid = styled.div`
+  margin-top: 20px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
